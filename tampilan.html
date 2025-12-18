@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pemesanan Tiket Traveling</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #617992;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      background: #e9f5ff;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Pemesanan Tiket Traveling</h2>
+
+    <label>Nama Pemesan</label>
+    <input type="text" id="nama" placeholder="Masukkan nama" />
+
+    <label>Tujuan</label>
+    <select id="tujuan">
+      <option value="Jakarta">Jakarta</option>
+      <option value="Bandung">Bandung</option>
+      <option value="Yogyakarta">Yogyakarta</option>
+      <option value="Surabaya">Surabaya</option>
+    </select>
+
+    <label>Tanggal Berangkat</label>
+    <input type="date" id="tanggal" />
+
+    <label>Jumlah Tiket</label>
+    <input type="number" id="jumlah" value="1" min="1" />
+
+    <button onclick="pesanTiket()">Pesan Tiket</button>
+
+    <div class="result" id="hasil"></div>
+  </div>
+
+  <script>
+    function pesanTiket() {
+      const nama = document.getElementById('nama').value;
+      const tujuan = document.getElementById('tujuan').value;
+      const tanggal = document.getElementById('tanggal').value;
+      const jumlah = document.getElementById('jumlah').value;
+
+      if (nama === '' || tanggal === '') {
+        alert('Lengkapi data pemesanan!');
+        return;
+      }
+
+      const harga = 150000; // harga per tiket
+      const total = harga * jumlah;
+
+      document.getElementById('hasil').innerHTML = `
+        <h3>Detail Pemesanan</h3>
+        <p>Nama: ${nama}</p>
+        <p>Tujuan: ${tujuan}</p>
+        <p>Tanggal: ${tanggal}</p>
+        <p>Jumlah Tiket: ${jumlah}</p>
+        <p><strong>Total Bayar: Rp ${total.toLocaleString()}</strong></p>
+      `;
+    }
+  </script>
+</body>
+</html>
